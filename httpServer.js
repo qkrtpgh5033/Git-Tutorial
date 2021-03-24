@@ -90,7 +90,7 @@ var app = http.createServer(function (request, response) {
     
     if (request.url == '/sucess.html') {
         
-        // getConnection();    // 통신
+        // getConnection();
 
         var template;
         console.log(request.url);
@@ -100,17 +100,10 @@ var app = http.createServer(function (request, response) {
             while (i < filelist.length) {
     
                 list = list + '<tr>';
-                var day = filelist[i].split("_")[0];
-                // var year = slide1.split[0];
-                // var month = slide1.split[1];
-                // var day = slide1.split[2];
-                list = list + '<th onClick = " test(this);">' + day + '</th>';
                 
-              
-
-
-                var slide2 = filelist[i].split("_")[1].split(".")[0];
-                var time = slide2.split("-");
+                list = list + '<th onClick = " test(this);">' + filelist[i] + '</th>';
+                var slide = filelist[i].split("_")[1].split(".")[0];
+                var time = slide.split("-");
                 var hour = time[0]+"시";
                 var min = time[1]+"분";
                 var sec = time[2]+"초";
@@ -156,7 +149,7 @@ var app = http.createServer(function (request, response) {
                         <td class ='Playlist' colspan="2"> 재생목록</td>
                     </thead>
                     <tbody>
-                    <th class = 'name' scope="col">날짜</th>
+                    <th class = 'name' scope="col">파일 이름(날짜_시간)</th>
                     <th class = 'name' scope="col">찍은 시간</th>
     
                         ${list}
@@ -261,7 +254,7 @@ var app = http.createServer(function (request, response) {
         //        url_split=url.split("/");
         console.log("video");
         var video_name = "video/"+split_url[2];
-        console.log(video_name+"ggggggggggggggggggggg");
+        console.log(video_name);
 
         fs.readFile(video_name, function (err, data) {
             if (err) throw err;
@@ -269,6 +262,9 @@ var app = http.createServer(function (request, response) {
             response.write(data);
             response.end();
         });
+
+
+
         return;
     }
 
