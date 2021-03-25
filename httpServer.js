@@ -34,7 +34,7 @@ function getConnection()
         {
             console.log('sucess!!!@@@@@@@@@@@@@')
         }
-        console.log("data recv log======================================================================"); 
+        console.log("data recv log=================================================================="); 
         recvData.push(data); 
         console.log("data.length : " + data.length);
         console.log("data recv : " + data);
