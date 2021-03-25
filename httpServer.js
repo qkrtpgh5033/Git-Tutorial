@@ -81,16 +81,10 @@ var app = http.createServer(function (request, response) {
         
         return response.writeHead(404);
     }
-    // if(flag)
-    // {
-    //     console.log(__dirname+_url+'mmmmmmmmmmmm');
-    //     response.end(fs.readFileSync(__dirname + _url));
-        
-    // }
     
     if (request.url == '/sucess.html') {
         
-        // getConnection();
+        getConnection();
 
         var template;
         console.log(request.url);
@@ -101,7 +95,12 @@ var app = http.createServer(function (request, response) {
     
                 list = list + '<tr>';
                 
-                list = list + '<th onClick = " test(this);">' + filelist[i] + '</th>';
+                list = list + '<th onClick = " test(this);">' + filelist[i]+ '</th>';
+                
+                var day = filelist[i].split("_")[0];
+                
+                list = list + '<th>' + day + '</th>';
+
                 var slide = filelist[i].split("_")[1].split(".")[0];
                 var time = slide.split("-");
                 var hour = time[0]+"시";
@@ -146,11 +145,12 @@ var app = http.createServer(function (request, response) {
                 <table class="table table-bordered table-dark">
     
                     <thead>
-                        <td class ='Playlist' colspan="2"> 재생목록</td>
+                        <td class ='Playlist' colspan="3"> 재생목록</td>
                     </thead>
                     <tbody>
-                    <th class = 'name' scope="col">파일 이름(날짜_시간)</th>
-                    <th class = 'name' scope="col">찍은 시간</th>
+                    <th class = 'name' scope="col">파일 이름</th>
+                    <th class = 'name' scope="col">날짜</th>
+                    <th class = 'name' scope="col">시간</th>
     
                         ${list}
     
@@ -232,7 +232,6 @@ var app = http.createServer(function (request, response) {
             response.write(data);
             response.end();
         });
-
         return;
     }
     
@@ -245,7 +244,6 @@ var app = http.createServer(function (request, response) {
             response.write(data);
             response.end();
         });
-
         return;
     }
 
@@ -254,7 +252,7 @@ var app = http.createServer(function (request, response) {
         //        url_split=url.split("/");
         console.log("video");
         var video_name = "video/"+split_url[2];
-        console.log(video_name);
+        console.log(video_name+"ddddddddddd");
 
         fs.readFile(video_name, function (err, data) {
             if (err) throw err;
